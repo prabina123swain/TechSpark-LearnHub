@@ -1,8 +1,8 @@
 import React, { useState,useEffect, useRef } from 'react'
 import { useDropzone } from 'react-dropzone';
-import { Player } from 'video-react';
+import { BigPlayButton, Player } from 'video-react';
 import {FiUploadCloud} from 'react-icons/fi'
-import { useSelector } from 'react-redux';
+
 
 export default function Upload({
   name,
@@ -76,18 +76,18 @@ export default function Upload({
                 className="h-full w-full rounded-md object-cover max-h-[300px] max-w-[300px] mx-auto"
               />)
               :(
-                <div className="max-h-[600px] flex items-end justify-end bg-gray-900 p-4">
-                <div className="w-full flex flex-col items-center">
-               <Player
-              className="text-white rounded-md object-cover h-1/2 w-full mx-auto flex flex-col"
-              fluid={false}
-               width="100%"
-               height="auto"
+                <div className="flex-1 p-4">
+                <Player
+              //  ref={playerRef}
+                aspectRatio="16:9"
+                playsInline
+                src={previewSource}
                 >
-               <source src={previewSource} />
-              </Player>
-               </div>
-              </div>
+              <BigPlayButton position="center" />
+            </Player>
+          
+
+      </div>
               )
              }
              {/* this for when we anr not viewing data can cel buttom will show */}

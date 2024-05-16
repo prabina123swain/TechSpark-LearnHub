@@ -29,7 +29,6 @@ const MyCourseCard = ({ courseDetails }) => {
         {/* <p className="text-gray-700 text-base mb-2">{subtitle}</p> */}
         <p className="text-pure-greys-600 font-normal text-sm max-h-14 overflow-hidden line-clamp-3">{truncatedDescription}...</p>
       </div>
-
       <div className="flex justify-left items-center pt-2 flex-wrap">
         <div className="px-6 p-2">
          <Link to={`/view-course/${courseDetails._id}`} className="bg-blue-500 text-white font-bold py-2 px-4 rounded">Start Learning</Link>

@@ -17,9 +17,7 @@ export default function TotalAmount() {
 
   return (
     <div className="w-full mb-4 rounded-md border-2 border-richblack-700 bg-white p-6 flex items-center space-x-10 justify-center">
-
       <p className="mb-1 text-3xl font-medium text-richblack-400">Total: ₹ {total}</p>
-    
       <button onClick={handleBuyCourse} className=" bg-blue-500 text-white px-4 py-2 font-bold text-xl rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Buy Now</button>
     </div>
   );

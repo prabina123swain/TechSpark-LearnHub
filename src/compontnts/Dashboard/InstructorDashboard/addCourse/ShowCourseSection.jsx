@@ -9,9 +9,9 @@ import { setCourse } from "../../../../slices/courseSlice"
 import ConfirmationModal from "../../../commmon/ConfirmationModal"
 import { deleteSection, deleteSubSection } from "../../../../services/operations/sectionAndSubsectionApi"
 import SubSectionModal from "./SubSectionModal"
-import IconBtn from "../../../commmon/IconBtn"
 // import ConfirmationModal from "../../../../Common/ConfirmationModal"
 // import SubSectionModal from "./SubSectionModal"
+
 
 export default function ShowCourseSection({ handleChangeEditSectionName }) {
   const { course } = useSelector((state) => state.course)
@@ -93,9 +93,9 @@ export default function ShowCourseSection({ handleChangeEditSectionName }) {
             </summary>
             <div className="px-6 pb-4">
               {/* Render All Sub Sections Within a Section */}
-              {section?.subSection?.map((data) => (
-                <div
-                  key={data?._id}
+              {section?.subSection?.map((data,index) => (
+                <div 
+                  key={index}
                   onClick={() => setViewSubSection(data)}
                   className="flex cursor-pointer items-center justify-between gap-x-3 border-b-2 border-b-richblack-600 py-2"
                 >

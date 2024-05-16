@@ -20,12 +20,13 @@ import { ACCOUNT_TYPE } from "./utils/constants";
 import EnrolledCourses from "./compontnts/Dashboard/StudentDashboard/EnrolledCourses";
 import Cart from "./compontnts/Dashboard/StudentDashboard/Cart";
 import PurchaseHistory from "./compontnts/Dashboard/StudentDashboard/PurchaseHistory";
-import CreateCourse from "./compontnts/Dashboard/InstructorDashboard/addCourse/CreateCourse";
+import CreateCourse from "./pages/CreateCourse";
 import ShowMyCourses from "./compontnts/Dashboard/InstructorDashboard/myCourses/ShowMyCourses";
 import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
 import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./compontnts/Dashboard/StudentDashboard/VideoDetails";
+import WelcomeCourse from "./compontnts/Dashboard/StudentDashboard/WelcomeCourse";
 
 function App() {
   const {user} = useSelector(state=>state.profile);
@@ -121,6 +122,10 @@ function App() {
             <>
               <Route
                 path="view-course/:courseId"
+                element={<WelcomeCourse />}
+              />
+                <Route
+                path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
                 element={<VideoDetails />}
               />
             </>

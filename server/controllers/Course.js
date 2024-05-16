@@ -89,7 +89,7 @@ exports.createCourse= async(req,res) => {
 exports.editCourseDetails= async(req,res)=>{
     try{
         const updateValue=req.body;
-        console.log("data ",updateValue);
+        //console.log("data ",updateValue);
 
         const courseId=updateValue._id;
        const course = await Course.findById(courseId);
@@ -291,9 +291,14 @@ exports.getInstructorCourseDetails = async(req,res)=>{
        try{
         const courses=await Course.find(
             {instructor:userId}
-            );
+            ).populate({
+                path:"courseContents",
+                populate:{
+                    path:"subSection"
+                }
+             }).exec();
      // console.log(courses);
-      console.log("first course ",courses[0]);
+     // console.log("first course ",courses[0]);
 
             res.status(200).json({
                 success:true,

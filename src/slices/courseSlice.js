@@ -13,7 +13,7 @@ const courseSlice = createSlice({
     reducers:{
        setCourse(state,value){
         state.course=value.payload;
-        console.log("course in slice ",state.course);
+      //  console.log("course in slice ",state.course);
        },
        setStep(state,value){
         state.step=value.payload;

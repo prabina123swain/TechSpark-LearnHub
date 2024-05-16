@@ -9,9 +9,18 @@ import { MdLibraryBooks } from "react-icons/md";
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../services/operations/authApi';
 import { Link, useNavigate } from 'react-router-dom';
+import { ACCOUNT_TYPE } from '../../utils/constants';
 
 
-const drowDownData =[
+//after log in we will show user details ->cart,total items,notification, name,image
+export default function ProfileDropDown() {
+  
+  const {totalItems}= useSelector(state=>state.cart);
+  const {user} = useSelector(state=>state.profile);
+  const {firstName , image }= user;
+
+
+  const drowDownData =[
     {
         title:"My Profile",
         logo:<CgProfile color={"green"}/>,
@@ -20,7 +29,7 @@ const drowDownData =[
     {
         title:"My courses",
         logo:<MdLibraryBooks color={"green"}/>,
-        linkto:"/dashboard/enrolled-courses"
+        linkto:user?.accouser?.accountType === "Student"?"/dashboard/enrolled-courses":"/dashboard/my-courses"
     },
     {
         title:"Edit Profile",
@@ -29,14 +38,9 @@ const drowDownData =[
     },
 ]
 
-//after log in we will show user details ->cart,total items,notification, name,image
-export default function ProfileDropDown() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-  const {totalItems}= useSelector(state=>state.cart);
-  const {user} = useSelector(state=>state.profile);
-  const {firstName , image }= user;
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -69,10 +73,15 @@ export default function ProfileDropDown() {
     <div className='flex gap-6 items-center '>
     <Link to={"dashboard/myCart"}>
     <div className='relative '>
+       { 
+        user?.accountType === ACCOUNT_TYPE.STUDENT &&
+        <div>
         <FaCartShopping color='green' size={"30px"}/>
-        {
+        { 
            (totalItems>0)&&<span className='absolute right-[0] top-0 w-[20px] h-[20px] rounded-full text-white flex items-center justify-center font-bold text-center text-sm aspect-square'>{totalItems}</span>
         }
+        </div>
+       }
      </div>
     </Link>
      <div className=' relative z-[1000]'>

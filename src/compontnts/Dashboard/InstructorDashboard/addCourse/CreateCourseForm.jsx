@@ -19,7 +19,7 @@ function CreateCourseForm() {
   const [loading,setLoading] = useState(false);
   const {token} =useSelector(state=>state.auth);
   const {editCourse,course}= useSelector(state=>state.course);
-  
+  //console.log("course",course);
    const dispatch = useDispatch();
    
   const {
@@ -29,6 +29,19 @@ function CreateCourseForm() {
     getValues,
     formState: { errors },
   } = useForm()
+
+
+  async function getAllcategoryDetails(){
+    // setLoading(true);
+     const result= await findAllCategoryDeatails();
+      console.log("all categories ",result);
+      setCourseCategories(result);
+     // setLoading(false);
+    }
+  useEffect(()=>{
+         getAllcategoryDetails();
+        
+  },[])
 
    useEffect(()=>{
       if(editCourse){
@@ -71,18 +84,6 @@ function arraysAreEqual(arr1, arr2) {
   return true;
 }
 
-
-    async function getAllcategoryDetails(){
-       // setLoading(true);
-        const result= await findAllCategoryDeatails();
-         console.log("all categories ",result);
-         setCourseCategories(result);
-        // setLoading(false);
-       }
-        useEffect(()=>{
-            getAllcategoryDetails();
-           
-        },[])
 
     async function handleEditCourse(){
       let currentValues = getValues();
@@ -138,7 +139,7 @@ function arraysAreEqual(arr1, arr2) {
       formData =data 
       // formData.set('tags',JSON.stringify(data.tags));
       // formData.set('instructions',JSON.stringify(data.instructions));
-      console.log(formData);
+     // console.log(formData);
       let result = await addCourseDetails(formData, token);
       console.log("result ",result);
      if (result) {

@@ -11,18 +11,8 @@ import { NavbarLinks } from '../../data/navbar-links'
 
 function Navabar() {
   const location = useLocation();
-  // const navigate = useNavigate();
-  //console.log("location ",location.pathname);
   const {token} = useSelector((state)=>state.auth);
-  // const {user} = useSelector((state)=>state.profile);
-  // const {totalItems} =useSelector(state=>state.cart);
 
- // console.log("Token ",token);
-  
-
-  // function logOutHandler(){
-  //   dispatch(logOut({navigate}));
-  // }
 
   return (
     <div className='w-11/12 mx-auto flex align-middle items-center justify-between'>

@@ -1,5 +1,5 @@
 import { ACCOUNT_TYPE } from "../utils/constants";
-import {VscAccount ,VscDashboard,VscVm,VscAdd,VscMortarBoard,VscHistory ,VscListUnordered} from 'react-icons/vsc'
+import {VscAccount ,VscVm,VscAdd,VscMortarBoard,VscHistory ,VscListUnordered} from 'react-icons/vsc'
 
 export const sidebarLinks = [
   {
@@ -8,13 +8,13 @@ export const sidebarLinks = [
     path: "/dashboard/my-profile",
     icon: <VscAccount/>,
   },
-  {
-    id: 2,
-    name: "Dashboard",
-    path: "/dashboard/instructor",
-    type: ACCOUNT_TYPE.INSTRUCTOR,
-    icon: <VscDashboard/>,
-  },
+  // {
+  //   id: 2,
+  //   name: "Dashboard",
+  //   path: "/dashboard/instructor",
+  //   type: ACCOUNT_TYPE.INSTRUCTOR,
+  //   icon: <VscDashboard/>,
+  // },
   {
     id: 3,
     name: "My Courses",

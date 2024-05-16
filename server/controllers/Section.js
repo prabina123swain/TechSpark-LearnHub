@@ -56,10 +56,17 @@ exports.updateSection = async (req,res) =>{
               })
         }
         //update Section details to Db
-       const newSection=await Section.findByIdAndUpdate(sectionId,{sectionName:sectionName},{new:true});
+       const newSection=await Section.findByIdAndUpdate(
+                                              sectionId,
+                                              {sectionName:sectionName},
+                                              {new:true}).populate("subSection").exec();
        console.log("New Section is ",newSection);
        //fetch the update course and return to frontend
-       const updatedCourse = await Course.findById(courseId).populate("courseContents").exec();
+       const updatedCourse = await Course.findById(courseId).
+                                          populate({
+                                            path:"courseContents",
+                                            populate:"subSection"
+                                          }).exec();
        return res.status(200).json({
         success:true,
         message:"Section Updated Successfully ",
@@ -67,10 +74,10 @@ exports.updateSection = async (req,res) =>{
       })
     }
     catch(err){
-        console.log(err);
+        console.log(err.message);
         return res.status(500).json({
             success:false,
-            message:"Section creation failed ",
+            message:"Section updation failed ",
         })
     }
 }

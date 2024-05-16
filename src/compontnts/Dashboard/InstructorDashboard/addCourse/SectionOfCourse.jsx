@@ -49,6 +49,7 @@ function SectionOfCourse() {
           toast.success("course published successfully ");
            dispatch(setCourse(null));
            dispatch(setStep(1));
+           dispatch(setEditCourse(false));
            setConfirmationModal(null);
            navigete("/dashboard/my-courses");
          }
@@ -56,7 +57,7 @@ function SectionOfCourse() {
 
      const handleBackToCourse =()=>{
         dispatch(setEditCourse(true));
-      dispatch(setStep(1));
+        dispatch(setStep(1));
      }
 
      const onSubmit=async(data)=>{
@@ -72,7 +73,7 @@ function SectionOfCourse() {
        else{
        // console.log(editSectionName);
          result = await updateSection({sectionName:data.sectionName,sectionId:editSectionName,courseId:course?._id,token});
-         console.log("updated section ");
+         console.log("updated section ",result);
        }
 
        if(result){

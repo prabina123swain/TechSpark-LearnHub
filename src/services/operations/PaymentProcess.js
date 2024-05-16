@@ -63,7 +63,6 @@ export const BuyCourse = async({token,
       console.log("razorpay key ",process.env.RAZORPAY_KEY);
 
       var options = {
-
         key: process.env.RAZORPAY_KEY,
         currency: orderResponse.data.data.currency,
         amount: `${orderResponse.data.data.amount}`,
@@ -79,6 +78,9 @@ export const BuyCourse = async({token,
             sendPaymentSuccessEmail(response, orderResponse.data.data.amount, token)
             verifyPayment({ ...response, courses }, token, navigate, dispatch)
           },
+       theme: {
+            "color": "#3399cc"
+        }
         }
         const paymentObject = new window.Razorpay(options)
     

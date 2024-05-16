@@ -17,7 +17,7 @@ function CourseTags(  {  name,
     useEffect(()=>{
       register(name,{required:true});
        if(course){
-        console.log("tags",course.tags);
+      //  console.log("tags",course.tags);
         setValue('tags',course.tags);
         setAllTags(course.tags);
        }

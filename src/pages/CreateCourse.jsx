@@ -1,12 +1,12 @@
 import React from 'react'
-import CreateCourseForm from './CreateCourseForm'
+import CreateCourseForm from '../compontnts/Dashboard/InstructorDashboard/addCourse/CreateCourseForm'
 import { useSelector } from 'react-redux'
-import SectionOfCourse from './SectionOfCourse';
+import SectionOfCourse from '../compontnts/Dashboard/InstructorDashboard/addCourse/SectionOfCourse';
 
 
 function CreateCourse() {
   const {step}=useSelector(state=>state.course);
-  
+
   return (
     <div className='flex bg-white p-3 flex-col  mx-auto items-center'>
         {

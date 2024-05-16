@@ -1,14 +1,30 @@
 // src/components/CourseList.js
 import React, { useState } from 'react';
 import ConfirmationModal from '../../../commmon/ConfirmationModal';
+import { setCourse, setEditCourse, setStep } from '../../../../slices/courseSlice';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const CourseList = ({courseData,backgroundColor,handleDelete}) => {
 
-   //console.log("course data",courseData);
-  
+  const navigate=useNavigate();
+  const disapatch = useDispatch();
+   //console.log("course data",courseData);  
   const handleEdit = () => {
     console.log(`Edit course with id courseData`,courseData);
+    disapatch(setCourse(courseData));
+    disapatch(setStep(1));
+    disapatch(setEditCourse(true));
+   // console.log("step",step,course,editCourse);
+
+    const toastId=toast.loading("loading...");
+    navigate("/dashboard/add-course");
+    toast.dismiss(toastId);
   };
+
+  const createdAtDate = new Date(courseData?.createdAt);
+  const formattedCreatedAt = `${createdAtDate.toLocaleDateString()} ${createdAtDate.toLocaleTimeString()}`;
 
 
   const [confirmationModalData,setConfirmationModalData]=useState(null);
@@ -24,7 +40,7 @@ const CourseList = ({courseData,backgroundColor,handleDelete}) => {
             <div className="flex-1">
               <div className="mb-2">
                 <span className="font-bold text-lg">{courseData?.courseName}</span>
-                <p className="text-sm text-gray-600">{`Price: ${courseData?.price} | Created At: ${(courseData?.createdAt)}`}</p>
+                <p className="text-sm text-gray-600">{`Price: ${courseData?.price} | Created At: ${formattedCreatedAt}`}</p>
               </div>
               <p className="text-sm text-gray-700">{courseData?.courseDescription}</p>
             </div>

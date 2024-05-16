@@ -81,8 +81,7 @@ function changeHandler(event){
         //console.log("email and Pass",email,password);
         dispatch(logIn({email,password,navigate}));
       }
-      //e.target.reset();
-      
+      //e.target.reset(); 
   }
 
   return (
