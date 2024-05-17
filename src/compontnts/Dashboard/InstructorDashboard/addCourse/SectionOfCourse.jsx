@@ -152,7 +152,7 @@ function SectionOfCourse() {
             )
           }
           >
-          {course?.status=="Draft"?"Publish Course":"Complete update"}
+          {course?.status==="Draft"?"Publish Course":"Complete update"}
           <AiOutlineArrowRight className='font-bold'/>
        </button>
        </div>

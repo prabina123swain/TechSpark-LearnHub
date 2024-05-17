@@ -6,7 +6,7 @@ import { apiConnector } from '../apiConnecter';
 
 const {
     GET_USER_DETAILS_API,
-    UPDATE_PROFILE_API
+    // UPDATE_PROFILE_API
 }  = profileEndpoints
 
 export const getUserDetails= async(token)=> {

@@ -10,28 +10,29 @@ const ShowMyCourses = () => {
     //find all courses related to instructor
     const [allCourses,setAllCourses] = useState([]);
     const {token} =useSelector(state=>state.auth);
-    const {user} = useSelector(state=>state.profile);
-    const {course} = useSelector(state=>state.course);
+    // const {user} = useSelector(state=>state.profile);
+    // const {course} = useSelector(state=>state.course);
     
     const navigate = useNavigate();
 
 
     //console.log("user",user);
 
+  useEffect(()=>{
+      
     async function findCourses(){
-        // const courses=await user.courses.map(async(courseId)=>{
-        //   console.log(courseId);
-        //   return  await findCourseDetails({courseId,token});
-        // })
-        const result= await userCourses({token});
-        console.log("courses ",result.courses);
-         setAllCourses(result.courses);
-    }
-   
-    useEffect(()=>{
+      // const courses=await user.courses.map(async(courseId)=>{
+      //   console.log(courseId);
+      //   return  await findCourseDetails({courseId,token});
+      // })
+      const result= await userCourses({token});
+      console.log("courses ",result.courses);
+       setAllCourses(result.courses);
+     }
+ 
      findCourses();
-      //setAllCourses(courses);
-     },[]);
+
+     },[token]);
 
      const handleDelete = async(id) => {
       console.log(`Delete course with id ${id}`);

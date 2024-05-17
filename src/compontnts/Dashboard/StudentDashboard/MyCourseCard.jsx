@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const truncateText = (text, maxLength) => {
@@ -8,14 +7,9 @@ const truncateText = (text, maxLength) => {
 const MyCourseCard = ({ courseDetails }) => {
 
   console.log(courseDetails);
-  const { thumbnail, courseName , courseDescription, price } = courseDetails;
+  const { thumbnail, courseName , courseDescription } = courseDetails;
   const truncatedDescription = truncateText(courseDescription, 120); // Adjust the desired character limit
-  const { token } = useSelector(state => state.auth);
   
-  function handleShowcourseDetails() {
-    // localStorage.setItem('targetUrl', `/courses/${courseDetails._id}`);
-    // setShowModal(true);
-  }
 
   return (
     <div className="rounded shadow-lg relative bg-white m-4 transition-transform transform hover:scale-95 pb-5 space-y-3 ">

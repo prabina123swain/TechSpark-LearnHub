@@ -159,8 +159,8 @@ function changeHandler(event){
   <div className='w-1/2 p-4  flex flex-col items-center justify-center'>
    {
     (formType=== "signUp") ? 
-     (<img src={sideImg}></img>)
-     : (<img src={imageUrl}></img>) 
+     (<img src={sideImg} alt='signUpImg' loading='lazy'></img>)
+     : (<img src={imageUrl} alt='LogInImg' loading='lazy'></img>) 
    }
   </div>
     </div>

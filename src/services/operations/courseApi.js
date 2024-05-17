@@ -4,7 +4,7 @@ import { courseEndpoints } from "../api";
 
 const {
   COURSE_DETAILS_API,
-  GET_ALL_COURSE_API,
+  // GET_ALL_COURSE_API,
   GET_FULL_COURSE_DETAILS_AUTHENTICATED,
   CREATE_COURSE_API,
   EDIT_COURSE_API,

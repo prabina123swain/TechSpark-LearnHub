@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { BsChevronRight } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 

@@ -8,18 +8,18 @@ import MyCourseCard from './MyCourseCard';
 function EnrolledCourses() {
   
   const [courses,setCourses] = useState([]);
-  const {user} = useSelector(state=>state.profile);
   const {token} = useSelector(state=>state.auth);
 
-  async function findCourses(){
-    const result= await studentCourses({token});
-    console.log("courses ",result.courses);
-    setCourses(result.courses);
-}
 
-useEffect(()=>{
-  findCourses();
- },[]);
+  useEffect(() => {
+    async function findCourses() {
+      const result = await studentCourses({ token });
+      console.log("courses ", result.courses);
+      setCourses(result.courses);
+    }
+
+    findCourses();
+  }, [token]);
 
   if(courses.length===0){
     return(

@@ -24,11 +24,11 @@ export default function Upload({
 
   useEffect(()=>{
     register(name,{required:true});
-  },[register]);
+  },[register,name]);
 
   useEffect(()=>{
     setValue(name,selectedFile);
-  },[selectedFile]);
+  },[selectedFile , name, setValue]);
 
   const previewFile = (file) => {
     // console.log(file)

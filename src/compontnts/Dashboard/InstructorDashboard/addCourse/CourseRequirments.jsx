@@ -9,7 +9,7 @@ function CourseRequirments(
     register,
     setValue,
     errors,
-    getValues,}
+    }
         ) {
         
     const [requirement, setRequirement] = useState("")
@@ -22,10 +22,11 @@ function CourseRequirments(
         console.log(course.instructions);
         setRequirementsList(course.instructions);
       }
-    },[])
+    },[course,name,register,setValue])
     useEffect(()=>{
       setValue(name,requirementsList);
-    },[requirementsList]);
+    },[requirementsList,name, setValue]);
+    
   function handleAddRequirmentList(e){
     e.preventDefault();
     if (requirement) {

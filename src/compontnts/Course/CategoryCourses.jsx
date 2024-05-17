@@ -2,30 +2,27 @@ import React, { useEffect, useState } from 'react'
 import CourseCard from './CourseCard'
 import { categoryPageDetails } from '../../services/operations/CategoryPageData'
 import ConfirmationModal from '../commmon/ConfirmationModal';
-import { Link } from 'react-router-dom';
 
-function CategoryCourses({categoryId}) {
-
-  //find all courses of that category
-  const [currentCategoryCourses,setCurrentCategoryCourses]=useState([]);
- // const [otherCategoryCourses,setOtherCategoryCourses]=useState([]);
-  const [topSellingCategoryCourses,setTopsellingCategoryCourses]=useState([]);
-
-  async function findCategoryData(categoryId) {
-   // console.log("ID-",categoryId);
-    const result=await categoryPageDetails(categoryId);
-    //console.log("Category Page Data  ",result);
-    setCurrentCategoryCourses(result.categoryCourses);
-    //setOtherCategoryCourses(result.otherCategories);
-    setTopsellingCategoryCourses(result.topSellingCourses);
-    console.log("current category courses ",currentCategoryCourses);
-    //console.log("other category courses ",otherCategoryCourses);
-    console.log("topSelling category courses ",topSellingCategoryCourses);
-  }
-  
+ function CategoryCourses({categoryId}) {
+        //find all courses of that category
+        const [currentCategoryCourses,setCurrentCategoryCourses]=useState([]);
+        // const [otherCategoryCourses,setOtherCategoryCourses]=useState([]);
+         const [topSellingCategoryCourses,setTopsellingCategoryCourses]=useState([]);
+       
   useEffect(() => {
+      async function findCategoryData(categoryId) {
+       // console.log("ID-",categoryId);
+        const result=await categoryPageDetails(categoryId);
+        //console.log("Category Page Data  ",result);
+        setCurrentCategoryCourses(result.categoryCourses);
+        //setOtherCategoryCourses(result.otherCategories);
+        setTopsellingCategoryCourses(result.topSellingCourses);
+        console.log("current category courses ",currentCategoryCourses);
+        //console.log("other category courses ",otherCategoryCourses);
+        console.log("topSelling category courses ",topSellingCategoryCourses);
+      }
     findCategoryData(categoryId);
-  },[categoryId]);
+  },[categoryId , currentCategoryCourses , topSellingCategoryCourses ]);
 
   const [showModal, setShowModal] = useState(false);
 

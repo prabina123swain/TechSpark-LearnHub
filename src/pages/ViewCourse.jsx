@@ -7,20 +7,23 @@ import { setCourse } from '../slices/courseSlice';
 
 
 function ViewCourse() {
-      
-  const path = useParams();
+  
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
+  const { courseId }=useParams();
+  useEffect(() => {
+    async function getFullCourseData() {
+      try {
+        const result = await getFullCourseDetails({ courseId, token });
+        console.log("full course data ", result);
+        dispatch(setCourse(result));
+      } catch (error) {
+        console.error("Failed to fetch course data", error);
+      }
+    }
 
-  async function getFullCourseData() {
-   const result = await getFullCourseDetails({ courseId: path.courseId, token });
-    console.log("full course data ",result);
-    dispatch(setCourse(result));
-  }
-
-  useEffect(()=>{
     getFullCourseData();
-   },[])
+  }, [courseId, token, dispatch]);
    
   return (
     <div className="relative flex min-h-[calc(100vh-3.5rem)]  flex-col lg:flex-row p-5">

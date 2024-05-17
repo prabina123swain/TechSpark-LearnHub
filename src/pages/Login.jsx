@@ -1,7 +1,6 @@
 import React from 'react';
 import Footer from '../compontnts/commmon/Footer';
 import Template from '../compontnts/Auth/Template';
-import imageUrl from '../assets/Images1/loginimage.jpg'
 
 //import { Link } from 'react-router-dom';
 const logInData =[

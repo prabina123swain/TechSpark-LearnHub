@@ -107,7 +107,7 @@ function arraysAreEqual(arr1, arr2) {
       }
 
      //handle course thumbnail files
-      if(currentValues.thumbnailImage!=course.thumbnail){
+      if(currentValues.thumbnailImage!==course.thumbnail){
         console.log("thumbnail mis matched" );
          newData.thumbnailImage=currentValues.thumbnailImage
       }

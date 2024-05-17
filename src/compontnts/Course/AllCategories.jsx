@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 //import { useParams } from "react-router-dom";
-import { categoryPageDetails, findAllCategoryDeatails } from "../../services/operations/CategoryPageData";
+import {  findAllCategoryDeatails } from "../../services/operations/CategoryPageData";
 import CategoryCourses from "./CategoryCourses";
 
 const AllCategories = () => {

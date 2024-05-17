@@ -9,7 +9,7 @@ function CourseTags(  {  name,
   setValue,
   errors,
   placeholder,
-  getValues,}) {
+  }) {
 
     const [allTags,setAllTags]= useState([]);
     const {course}= useSelector(state=>state.course);
@@ -21,11 +21,11 @@ function CourseTags(  {  name,
         setValue('tags',course.tags);
         setAllTags(course.tags);
        }
-    },[]);
+    },[course,name,register,setValue]);
 
     useEffect(()=>{
       setValue(name,allTags);
-    },[allTags]);
+    },[allTags,name,register ,setValue]);
 
     function handleKeyDown(e){
       

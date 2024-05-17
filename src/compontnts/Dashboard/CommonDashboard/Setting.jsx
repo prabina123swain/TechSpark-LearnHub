@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IoMdCamera } from "react-icons/io";
-import UpdateProfilePicture from './UpdateProfilePicture';
-import UpdatAdditionalInfo from './UpdatAdditionalInfo';
+// import UpdateProfilePicture from './UpdateProfilePicture';
+// import UpdatAdditionalInfo from './UpdatAdditionalInfo';
 import { getUserDetails } from '../../../services/operations/UserData';
 import { useSelector } from 'react-redux';
 import UpdatePassword from './UpdatePassword';
@@ -21,7 +21,7 @@ function Setting() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await getUserDetails(token);
+       const response = await getUserDetails(token);
         console.log("Response", response.firstName);
         if (response) {
           setFormData({
@@ -36,7 +36,7 @@ function Setting() {
           setProfilePicture(
             response.image
           )
-          console.log("Pic ",profilePicture);
+         // console.log("Pic ",profilePicture);
         } else {
           console.error('Failed to fetch user data');
         }
@@ -46,7 +46,7 @@ function Setting() {
     };
 
     fetchUserData();
-  }, []);
+  }, [token]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -77,7 +77,7 @@ function Setting() {
     <div>
       <div className='flex items-center justify-center p-10'>
         <div className='h-32 w-32 border-2 border-caribbeangreen-25 rounded-full relative'>
-        <img src={profilePicture} className='w-full h-full rounded-full'></img>
+        <img src={profilePicture} alt='Profile Pic' className='w-full h-full rounded-full'></img>
           <input
             type="file"
             id="fileInput"
