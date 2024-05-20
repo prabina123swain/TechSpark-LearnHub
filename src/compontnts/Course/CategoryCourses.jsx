@@ -22,7 +22,7 @@ import ConfirmationModal from '../commmon/ConfirmationModal';
         console.log("topSelling category courses ",topSellingCategoryCourses);
       }
     findCategoryData(categoryId);
-  },[categoryId , currentCategoryCourses , topSellingCategoryCourses ]);
+  },[categoryId  ]);
 
   const [showModal, setShowModal] = useState(false);
 
