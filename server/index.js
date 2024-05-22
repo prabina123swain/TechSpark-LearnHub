@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin:""https://tech-spark-learn-hub.vercel.app"",  ///these are options for cors
+        origin:"https://tech-spark-learn-6o33mo0we-prabina123swains-projects.vercel.app",  ///these are options for cors
         credentials:true
     })
 )
