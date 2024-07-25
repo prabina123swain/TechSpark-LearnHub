@@ -30,7 +30,6 @@ export const findAllCategoryDeatails= async()=>{
 export const categoryPageDetails = async(categoryId) =>{
     
     let result =[];
-    console.log("Id-",categoryId);
     //const toastId=toast.loading("Londing..");
 
     try{

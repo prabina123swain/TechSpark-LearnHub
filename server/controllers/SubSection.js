@@ -70,7 +70,7 @@ exports.updateSubSection = async (req,res) =>{
             sectionId
          }=req.body;
         //perform validation
-        console.log(title,sectionId,subSectionId,description);
+      //  console.log(title,sectionId,subSectionId,description);
         const oldSubSection= await SubSection.findById(subSectionId);
 
         if(!oldSubSection){
@@ -99,10 +99,10 @@ exports.updateSubSection = async (req,res) =>{
       }
          
      const newSubSection = await oldSubSection.save();
-     console.log("new subsection ",newSubSection);
+    // console.log("new subsection ",newSubSection);
     //update SubSection details from Db
       const updatedSection = await Section.findById(sectionId).populate("subSection").exec();
-      console.log("New Section is ",this.updatedSection);
+      //console.log("New Section is ",this.updatedSection);
        
        return res.status(200).json({
         success:true,

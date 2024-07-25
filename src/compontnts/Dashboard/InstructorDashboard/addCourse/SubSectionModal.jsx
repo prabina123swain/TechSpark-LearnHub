@@ -87,7 +87,7 @@ export default function SubSectionModal({
   const handleEditSubsection = async (data) => {
     //console.log(data);
     let title,description,video;   
-    console.log(modalData,"\n",data);
+    //console.log(modalData,"\n",data);
     if(modalData.title!==data.lectureTitle){
       title=data.lectureTitle;
      // console.log(title);

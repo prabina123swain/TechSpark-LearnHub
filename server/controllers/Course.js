@@ -20,7 +20,7 @@ exports.createCourse= async(req,res) => {
         instructions,
          }=req.body;
          
-    console.log(req.body);
+    //console.log(req.body);
 
      // Convert the tag and instructions from stringified Array to Array
     const tag = JSON.parse(tags)
@@ -47,7 +47,7 @@ exports.createCourse= async(req,res) => {
 
     //upload image to cloudinary
     const img=await uploadToCloudinary(thumbnail,process.env.FOLDER_NAME);
-    console.log(img.secure_url);
+    //console.log(img.secure_url);
     //insert Course details to DB
     const courseDetails=await Course.create({
         courseName,
@@ -60,7 +60,7 @@ exports.createCourse= async(req,res) => {
         instructor:instructorId,
         thumbnail:img.secure_url
       });
-      console.log("Course details ->",courseDetails);
+      //console.log("Course details ->",courseDetails);
 
       //update course id in instructor
       const updatedInstructor=await User.findByIdAndUpdate({_id:instructorId},{$push:{courses:courseDetails._id}},{new:true});
@@ -78,7 +78,7 @@ exports.createCourse= async(req,res) => {
       })
     }
     catch(err){
-        console.log("error in creating course ",err);
+       // console.log("error in creating course ",err);
         return res.status(500).json({
             success:false,
             message:"Course  creation failed ",
@@ -127,7 +127,7 @@ exports.editCourseDetails= async(req,res)=>{
 
         const updatedCourse=await course.save();
 
-        console.log("updated course ",updatedCourse);
+       // console.log("updated course ",updatedCourse);
 
         res.status(200).json({
             success:true,
@@ -146,7 +146,6 @@ exports.editCourseDetails= async(req,res)=>{
 
 exports.showAllCourses =async(req,res) => {
     try {
-        console.log("inside  show all courses");
         const allCourses = await Course.find(
           { status: "Published" },
           {
@@ -183,8 +182,6 @@ exports.getCourseDetails = async (req,res) =>{
     //  console.log("abcd");
     //console.log(req.body);
     const {courseId}= req.body;
-    console.log("type " ,typeof courseId);
-    console.log("course  id ",courseId);
 
     if(!courseId){
         return res.status(300).json({
@@ -287,7 +284,7 @@ exports.getFullCourseDetails = async (req,res) =>{
 
 exports.getInstructorCourseDetails = async(req,res)=>{
        const userId= req.user.id;
-       console.log("userid ",userId);
+      // console.log("userid ",userId);
        try{
         const courses=await Course.find(
             {instructor:userId}
@@ -318,7 +315,7 @@ exports.getInstructorCourseDetails = async(req,res)=>{
 
 exports.getStudentCourseDetails = async(req,res)=>{
     const userId= req.user.id;
-    console.log("userid ",userId);
+   // console.log("userid ",userId);
     try{
      const userDetails = await User.findById(userId).populate("courses").exec();
      //console.log("user",userDetails);
@@ -341,7 +338,7 @@ exports.getStudentCourseDetails = async(req,res)=>{
 
 exports.deleteCourse= async(req,res)=>{
      const {courseId}= req.body;
-    console.log("courseId ",courseId);
+   // console.log("courseId ",courseId);
 
     try{
          const courseDetails= await Course.findById(courseId);
@@ -356,17 +353,17 @@ exports.deleteCourse= async(req,res)=>{
                )
           };
       //delete all sections delete all sub sections related with the course
-       console.log("course removed from all users ");
+       //console.log("course removed from all users ");
       for(const sectionId of courseDetails.courseContents){
          //find the section details
          const section = await Section.findById(sectionId);
         //if section exists the delete all subsections from section
-        console.log("course section ",section);
+      //  console.log("course section ",section);
 
          if(section){
             for(const subSectionId of section.subSection){
                 const subSection= await SubSection.findById(subSectionId);
-                console.log("course subsections ",subSection);
+                //console.log("course subsections ",subSection);
                 if(subSection){
                 //delete subsection lectures from cloudinary
                     await DeleteFromcloudinary(subSection.videoUrl,process.env.FOLDER,'video');

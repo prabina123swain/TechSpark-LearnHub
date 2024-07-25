@@ -40,7 +40,7 @@ const signUpData =[
 ]
 
 function SignUp() {
-  console.log("inside sign up ");
+  //console.log("inside sign up ");
   return (
     <div>
     <Template data={signUpData} formType={"signUp"}/>

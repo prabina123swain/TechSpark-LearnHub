@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const mailSender= async (email,title,body)=>{
-    console.log("Inside mail sender ",body);
-    const transporter = nodemailer.createTransport({
+
+  const transporter = nodemailer.createTransport({
       host: process.env.MAIL_HOST,
       secure: true,
       auth: {
@@ -12,7 +12,7 @@ const mailSender= async (email,title,body)=>{
         pass: process.env.MAIL_PASS,
       },
     });
-     console.log("transporter created ");
+    // console.log("transporter created ");
     try {
       // send mail with defined transport object
       const info = await transporter.sendMail({

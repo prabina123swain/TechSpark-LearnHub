@@ -16,7 +16,7 @@ require("dotenv").config();
 exports.sendOTP=async(req,res)=>{
     try{
         const {email}=req.body;
-        console.log("email for sending otp " ,email);
+       // console.log("email for sending otp " ,email);
         const isUserExist=await User.findOne({email:email});
         if(isUserExist){
            return res.status(500).json({
@@ -42,14 +42,14 @@ exports.sendOTP=async(req,res)=>{
              checkOTP=await OTP.findOne({otp}); 
         }
 
-        console.log("OTP Generated ->",otp);
+        //console.log("OTP Generated ->",otp);
 
         const otpPayload={email,otp};
         //create an entry for otp ,as we have defined expires in OTP model 
         //so otp data will automatically deleted from DB after expires occure
 
         const createdOTP=await OTP.create(otpPayload);
-        console.log("Created OTP is",createdOTP);
+       // console.log("Created OTP is",createdOTP);
 
         return res.status(200).json({
             success:true,
@@ -59,7 +59,7 @@ exports.sendOTP=async(req,res)=>{
         
     }
     catch(err){
-        console.log("Error in Sending OTP  ",err);
+       // console.log("Error in Sending OTP  ",err);
         return res.status(500).json({
             success:false,
             message:"Error in Sending OTP ",
@@ -83,7 +83,7 @@ exports.Signup=async (req,res)=>{
          // countrycode,
          otp
         } =req.body;
-        console.log(email,password,confirmPassword,firstName,lastName,accountType,otp);
+      //  console.log(email,password,confirmPassword,firstName,lastName,accountType,otp);
       //check all required details are filled or not
         if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
             return res.status(500).json({
@@ -111,7 +111,7 @@ exports.Signup=async (req,res)=>{
       //find most recent otp entry in DB as at some instance of time many otp for same user may exist in DB
       const recentOtp=await OTP.find({email}).sort({createdAt:-1}).limit(1);
       //recentOtp is an array of otp so first index value is required object
-      console.log("Recent entered otp is ",recentOtp[0].otp);
+      //console.log("Recent entered otp is ",recentOtp[0].otp);
       //validate the otp
       if(recentOtp.length===0){
         return res.status(400).json({
@@ -139,7 +139,7 @@ exports.Signup=async (req,res)=>{
             message:'error in encrypting password '
         })
       }
-       console.log("Hashed password is ",hashedPassword);
+       //console.log("Hashed password is ",hashedPassword);
      //We need to create a profile because there exist one-to-one mapping
      //between user and user profile as user is registred correspoding profile is being created
      const profile=await Profile.create({
@@ -167,7 +167,7 @@ exports.Signup=async (req,res)=>{
      })
     }
     catch(err){
-        console.log("error in sign up",err);
+       // console.log("error in sign up",err);
        return res.status(500).json({
            success:false,
            message:"Error in Sign up the user please try again",
@@ -180,7 +180,7 @@ exports.Signup=async (req,res)=>{
 exports.login = async(req,res) =>{
     try{
         const {email,password}=req.body;
-        console.log("req body ",req.body);
+        //console.log("req body ",req.body);
         if(!email || !password){
             return res.status(500).json({
                 success:false,
@@ -237,7 +237,7 @@ exports.login = async(req,res) =>{
 
     }
     catch(err){
-        console.log("error in log in ",err);
+        //console.log("error in log in ",err);
         return res.status(500).json({
             success:false,
             message:"Error in Login the user please try again",
@@ -291,7 +291,7 @@ exports.changPassword=async(req,res)=>{
       })
     }
     catch(err){
-        console.log("error in change password ",err);
+       // console.log("error in change password ",err);
         return res.status(500).json({
             success:false,
             message:"Error in change password ",

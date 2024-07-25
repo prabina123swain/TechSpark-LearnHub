@@ -18,7 +18,7 @@ function EnrolledCourses() {
       dispatch(showLoading());
       const result = await studentCourses({ token });
       dispatch(hideLoading());
-      console.log("courses ", result.courses);
+      //console.log("courses ", result.courses);
       setCourses(result.courses);
     }
 

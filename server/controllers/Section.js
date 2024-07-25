@@ -7,7 +7,7 @@ exports.createSection = async (req,res) =>{
     try{
         const {sectionName,courseId}=req.body;
         //perform validation
-        console.log("section ",sectionName,courseId);
+       // console.log("section ",sectionName,courseId);
         if(!sectionName || !courseId){
             return res.status(405).json({
                 success:false,
@@ -25,7 +25,7 @@ exports.createSection = async (req,res) =>{
             {$push:{courseContents:section._id}},
             {new:true}).populate("courseContents").exec();
         
-        console.log("Updated courses ",updatedCourse);
+        //console.log("Updated courses ",updatedCourse);
         return res.status(200).json({
             success:true,
             message:"Section created Successfully ",
@@ -47,8 +47,7 @@ exports.updateSection = async (req,res) =>{
     try{
         const {sectionName,sectionId,courseId}=req.body;
         //perform validation
-        console.log(sectionName,sectionId,courseId);
-        console.log("Section details ",sectionName,sectionId,courseId);
+        //console.log("Section details ",sectionName,sectionId,courseId);
         if(!sectionName || !sectionId || !courseId){
             return res.status(405).json({
                 success:false,
@@ -60,7 +59,7 @@ exports.updateSection = async (req,res) =>{
                                               sectionId,
                                               {sectionName:sectionName},
                                               {new:true}).populate("subSection").exec();
-       console.log("New Section is ",newSection);
+      // console.log("New Section is ",newSection);
        //fetch the update course and return to frontend
        const updatedCourse = await Course.findById(courseId).
                                           populate({

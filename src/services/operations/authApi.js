@@ -25,7 +25,7 @@ export function sendOTP({email,navigate}){
         const result = await apiConnector("POST",SENDOTP_API,{
             email
         });
-        console.log("Result of otp send ",result.data);
+        //console.log("Result of otp send ",result.data);
          if(!result.data.success){
             toast.err(result.data.message);
          }
@@ -42,7 +42,7 @@ export function sendOTP({email,navigate}){
 }
 
 export function signUp(signUpData,{otp ,navigate}){
-   console.log(signUpData);
+   //console.log(signUpData);
    const data={
     ...signUpData,
     otp
@@ -123,10 +123,10 @@ export function getPasswordResetToken(email , setmailSent){
     
     return async()=>{
         try{
-            console.log("reset password token api ",RESETPASSTOKEN_API);
+           // console.log("reset password token api ",RESETPASSTOKEN_API);
          //call api connector for calling to backend
           const result=await apiConnector("POST",RESETPASSTOKEN_API,{email});
-          console.log("Result for generationg token... ",result);
+         // console.log("Result for generationg token... ",result);
 
           if(!result.data.success){
             throw new Error(result.data.message);
@@ -135,7 +135,7 @@ export function getPasswordResetToken(email , setmailSent){
           setmailSent(true);
         }
         catch(er){
-            console.log("Error in Reset password token api ",er)
+          //  console.log("Error in Reset password token api ",er)
             toast.error("Erroe in sending Token");
         }
     }
@@ -145,13 +145,12 @@ export function updatePassword({newPassword , confirmPassword ,token}){
     return async(dispatch)=>{
         try{
            // console.log("api reset password",RESETPASSWORD_API);
-           console.log("inside reset password ",newPassword,confirmPassword,token);
             const result =  await apiConnector("POST",RESETPASSWORD_API,{
                 password:newPassword,
                 confirmPassword,
                 token,
             });
-            console.log("Reset password result ",result);
+            //console.log("Reset password result ",result);
             if(!result.data.success){
                 toast.error(result.data.message);
             }

@@ -48,12 +48,11 @@ const UpdatePassword = () => {
       return;
     }
     const token =location.pathname.split('/').at(-1);
-    console.log("toeken ",token);
     //  logic to update the password
-    console.log(newPassword,confirmPassword ,token);
+    //console.log(newPassword,confirmPassword ,token);
    const result= dispatch(updatePassword({newPassword,confirmPassword,token}))
     // For now, just log the new password to the console
-    console.log('result of update Password:', result);   
+    //console.log('result of update Password:', result);   
     // Reset form state
     setNewPassword('');
     setConfirmPassword('');

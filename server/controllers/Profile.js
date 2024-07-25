@@ -8,11 +8,9 @@ exports.getUserDetails = async (req,res) => {
     try{
         
         //find id whichi is inserted during authorization i.e decoding of token
-        console.log(req.user);
         const user_id=req.user.id;
         //find user details;
          //user_id= new mongoose.Types.ObjectId(user_id);
-        console.log(user_id);
         const userDetails=await User.findById(user_id).populate("additionalDetails").exec();
         res.status(200).json({
             success:true,
@@ -109,13 +107,13 @@ exports.deleteProfile=async (req,res) => {
     //Delete the user
     const deletedUser= await User.findByIdAndDelete(user_id);
 
-    console.log("User and profile deleted ",deletedProfile,deletedUser);
+    //console.log("User and profile deleted ",deletedProfile,deletedUser);
 
     //after deleting user we also need to remove Students enrolled from course object
     //the user may access multiple courses find all courses id array
 
     const coursesId=userDetails.courses;
-    console.log("all courses Ids are ",coursesId);
+    //console.log("all courses Ids are ",coursesId);
 
     await Course.updateMany(
        {studentsEnrolled:user_id},

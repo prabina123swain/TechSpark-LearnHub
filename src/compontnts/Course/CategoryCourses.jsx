@@ -3,7 +3,6 @@ import CourseCard from './CourseCard'
 import { categoryPageDetails } from '../../services/operations/CategoryPageData'
 import ConfirmationModal from '../commmon/ConfirmationModal';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../commmon/Loader';
 import { hideLoading, showLoading } from '../../slices/loadingSlice';
 
 function CategoryCourses({categoryId}) {
@@ -24,9 +23,9 @@ function CategoryCourses({categoryId}) {
         //setOtherCategoryCourses(result.otherCategories);
         setTopsellingCategoryCourses(result.topSellingCourses);
         dispatch(hideLoading());
-        console.log("current category courses ",currentCategoryCourses);
+       // console.log("current category courses ",currentCategoryCourses);
         //console.log("other category courses ",otherCategoryCourses);
-        console.log("topSelling category courses ",topSellingCategoryCourses);
+       // console.log("topSelling category courses ",topSellingCategoryCourses);
       }
     findCategoryData(categoryId);
   },[categoryId]);
@@ -44,6 +43,8 @@ function CategoryCourses({categoryId}) {
     },
     btn2Handler: () => setShowModal(false),
   }
+
+  const loading = useSelector((state)=>state.loading);
 
   return (
     <div className='w-11/12 mx-auto'> 

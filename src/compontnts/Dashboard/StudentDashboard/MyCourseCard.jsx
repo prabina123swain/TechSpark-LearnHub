@@ -6,7 +6,7 @@ const truncateText = (text, maxLength) => {
 
 const MyCourseCard = ({ courseDetails }) => {
 
-  console.log(courseDetails);
+ // console.log(courseDetails);
   const { thumbnail, courseName , courseDescription } = courseDetails;
   const truncatedDescription = truncateText(courseDescription, 120); // Adjust the desired character limit
   

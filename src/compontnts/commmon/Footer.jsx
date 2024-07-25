@@ -14,7 +14,7 @@ function Footer() {
 
     const clickHandler = () => {
       if (email) {
-        console.log('Subscribed with email:', email);
+      //  console.log('Subscribed with email:', email);
         // Here you can add more logic, such as sending the email to your server
         toast.success(`Subscribed with email: ${email}`);
         setEmail(''); // Reset the input field

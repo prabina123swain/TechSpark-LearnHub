@@ -18,7 +18,7 @@ function VideoDetails() {
     setVideoUrl(url);
   }, [location.pathname, sectionId, subSectionId, course,url]);
 
-  console.log(subSectionId, videoUrl);
+  //console.log(subSectionId, videoUrl);
 
   return (
     <div className="flex flex-col">

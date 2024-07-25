@@ -28,7 +28,7 @@ const ShowMyCourses = () => {
       dispatch(showLoading());
       const result= await userCourses({token});
       dispatch(hideLoading());
-      console.log("courses ",result.courses);
+      //console.log("courses ",result.courses);
        setAllCourses(result.courses);
      }
  

@@ -49,7 +49,7 @@ exports.createRatings =async(req,res) => {
             course:coureseId
         });
         
-        console.log("New Review is ",newReview);
+        //console.log("New Review is ",newReview);
 
         //update the rating in corresponding course
 
@@ -94,7 +94,7 @@ exports.getAvgRatings =async(req,res) => {
          }
        ])
 
-       console.log("average rating is ",result);
+      // console.log("average rating is ",result);
      //return the result
       if(result.length >0 ){
          return res.status(200).json({
@@ -133,7 +133,7 @@ exports.getAllRatings =async(req,res) => {
                                                     select:"courseName"  //return only course name of the course
                                                 })
                                                 .exec();
-        console.log("All Reviews are ",allReviews);
+        //console.log("All Reviews are ",allReviews);
 
         return res.status(200).json({
             success:true,

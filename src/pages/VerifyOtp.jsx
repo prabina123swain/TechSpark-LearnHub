@@ -16,7 +16,7 @@ const VerifyOTP = () => {
     e.preventDefault();
     // Add your OTP verification logic here
     dispatch(signUp(signUpData,{otp,navigate}));
-    console.log('Verifying OTP:', otp);
+    //console.log('Verifying OTP:', otp);
   };
 
   return (

@@ -33,7 +33,7 @@ exports.createCategory= async(req,res) => {
       })
     }
     catch(err){
-        console.log("error in creating Category ",err.message);
+      //  console.log("error in creating Category ",err.message);
         return res.status(500).json({
             success:false,
             message:"Category creation failed ",
@@ -44,7 +44,7 @@ exports.createCategory= async(req,res) => {
 exports.showAllCategory = async(req,res) => {
     try{
     //Find all ta details whose name and description must present
-     console.log("req body =>",req.body); 
+    // console.log("req body =>",req.body); 
     const allCategories=await Category.find({},{name:true,description:true});
   
     //console.log("All Categories  ->\n",allCategories);
@@ -56,7 +56,7 @@ exports.showAllCategory = async(req,res) => {
       })
     }
     catch(err){
-        console.log("error in fetching all Category ",err.message);
+        //console.log("error in fetching all Category ",err.message);
         return res.status(500).json({
             success:false,
             message:"All Category details fetching failed ",
@@ -66,9 +66,8 @@ exports.showAllCategory = async(req,res) => {
 
 exports.categoryPageDetails = async (req,res) =>{
     try{
-        console.log("Love ");
         const {categoryId} = req.body;
-        console.log("request body " ,req.body);
+        //console.log("request body " ,req.body);
 
         if(!categoryId) {
             return res.status(200).json({
@@ -118,7 +117,7 @@ exports.categoryPageDetails = async (req,res) =>{
        })
     }
     catch(err){
-        console.log("Error in retriving category details ",err.message);
+        //console.log("Error in retriving category details ",err.message);
         return res.status(200).json({
             success:false,
             message:"Category details fetching failed ",

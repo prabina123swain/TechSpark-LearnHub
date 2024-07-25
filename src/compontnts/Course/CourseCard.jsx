@@ -7,7 +7,7 @@ const truncateText = (text, maxLength) => {
 
 const CourseCard = ({ courseDetails , setShowModal }) => {
 
-  console.log(courseDetails);
+ // console.log(courseDetails);
   const { thumbnail, courseName , courseDescription, price } = courseDetails;
   const truncatedDescription = truncateText(courseDescription, 120); // Adjust the desired character limit
   const { token } = useSelector(state => state.auth);

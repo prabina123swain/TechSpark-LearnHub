@@ -21,7 +21,7 @@ function AboutCourse({ courseDetails }) {
    // console.log("Hate ",token,"course",courses,user_details);
     dispatch(showLoading());
     const result= await BuyCourse({token,courses,user_details,navigate});
-    console.log("result of buy course ",result);
+    //console.log("result of buy course ",result);
     dispatch(hideLoading());
   }
   

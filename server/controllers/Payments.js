@@ -78,7 +78,7 @@ exports.capturePayment = async(req,res) => {
 
     try{
         const paymentResponse= await instance.orders.create(options);
-        console.log("payment response ",paymentResponse);
+        //console.log("payment response ",paymentResponse);
 
         //resnding successfull payment response 
         res.status(200).json({
@@ -166,7 +166,7 @@ async function enrollStudents(courses, userId, res) {
             
          // add course id to the user 
 
-         console.log("students enrolled",courseDetails ,courseDetails.studentsEnrolled);
+         //console.log("students enrolled",courseDetails ,courseDetails.studentsEnrolled);
 
          const updatedUser = await User.findByIdAndUpdate(
           {_id:userId},
@@ -182,7 +182,7 @@ async function enrollStudents(courses, userId, res) {
          }
 
         } catch(err) {
-          console.log("Error in course addition ",err.message)
+          //console.log("Error in course addition ",err.message)
            res.status(200).json({
             success:false,
             message:"failed to enroll course",
@@ -219,7 +219,7 @@ exports.sendPaymentSuccessEmail=async(req,res) =>{
         Payment Id :${paymentId},`      
     )
   } catch (error) {
-    console.log("error in sending mail", error)
+   // console.log("error in sending mail", error)
     return res
       .status(400)
       .json({ success: false, message: "Could not send email" })

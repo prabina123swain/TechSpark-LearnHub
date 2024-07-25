@@ -73,14 +73,14 @@ function SectionOfCourse() {
        else{
        // console.log(editSectionName);
          result = await updateSection({sectionName:data.sectionName,sectionId:editSectionName,courseId:course?._id,token});
-         console.log("updated section ",result);
+         //console.log("updated section ",result);
        }
 
        if(result){
         setValue("sectionName",'');
         setEditSectionName(null);
         dispatch(setCourse(result.updatedCourse));
-        console.log("updated course section",result.updatedCourse.courseContents);
+        //console.log("updated course section",result.updatedCourse.courseContents);
        }
        
      }

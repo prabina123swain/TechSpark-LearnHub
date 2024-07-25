@@ -18,7 +18,7 @@ function CourseDetailsHeader({courseDetails}) {
 
   const {token} = useSelector((state)=>state.auth);
   const {user} =  useSelector((state) =>state.profile);
-  console.log("type course" , courseDetails?.studentsEnrolled,user._id);
+  //console.log("type course" , courseDetails?.studentsEnrolled,user._id);
 
   // console.log("token ",token);
   // console.log("user" ,user) ;
@@ -31,7 +31,7 @@ async function buyCourseHandler() {
   const user_details = user;
  // console.log("Hate ",token,"course",courses,user_details);
   const result= await BuyCourse({token,courses,user_details,navigate,dispatch});
-  console.log("result of buy course ",result);
+  //console.log("result of buy course ",result);
 }
 
  function  addToCartHandler() {

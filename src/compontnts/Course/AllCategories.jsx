@@ -15,7 +15,7 @@ const AllCategories = () => {
   async function fetchCategories() {
     dispatch(showLoading());
     const result = await findAllCategoryDeatails(dispatch);
-    console.log("categories are ", result);
+    //console.log("categories are ", result);
 
     if (result && result.length > 0) {
       setAllCategories(result);

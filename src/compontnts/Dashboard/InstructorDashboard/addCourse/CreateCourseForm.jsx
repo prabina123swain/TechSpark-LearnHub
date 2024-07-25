@@ -35,7 +35,7 @@ function CreateCourseForm() {
   async function getAllcategoryDetails(){
      dispatch(showLoading());
      const result= await findAllCategoryDeatails();
-      console.log("all categories ",result);
+     // console.log("all categories ",result);
       setCourseCategories(result);
       dispatch(hideLoading());
     }

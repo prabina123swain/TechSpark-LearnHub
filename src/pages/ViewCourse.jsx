@@ -17,7 +17,7 @@ function ViewCourse() {
       try {
         dispatch(showLoading());
         const result = await getFullCourseDetails({ courseId, token });
-        console.log("full course data ", result);
+      //  console.log("full course data ", result);
         dispatch(hideLoading());
         dispatch(setCourse(result));
       } catch (error) {

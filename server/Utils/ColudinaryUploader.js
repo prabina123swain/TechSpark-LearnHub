@@ -36,7 +36,7 @@ exports.DeleteFromcloudinary = async(url,folder,fileType)=>{
     //options.resource_type="video";
    try{
    const result= await cloudinary.uploader.destroy(public_id,{folder:folder, secure: true, resource_type: `${fileType}` });
-   console.log("file deleted result ",result);
+  // console.log("file deleted result ",result);
     return result;
    }
    catch(e){

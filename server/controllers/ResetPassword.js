@@ -65,7 +65,7 @@ exports.resetPassword = async(req,res)=>{
    // console.log("Inside reset passoword ");
     const {token,password,confirmPassword}=req.body;
     //validation of password
-    console.log("Values -> ",password,confirmPassword,token);
+    //console.log("Values -> ",password,confirmPassword,token);
         if(!password || !confirmPassword || !token){
         return res.status(403).json({
             success:false,
@@ -78,7 +78,7 @@ exports.resetPassword = async(req,res)=>{
             message:"Password not matched ",
         })
      }
-     console.log("token ",token);
+    // console.log("token ",token);
     //find the specific token for specific user
     const user = await User.findOne({token:token});
     if(!user){
@@ -97,7 +97,7 @@ exports.resetPassword = async(req,res)=>{
         });
     }
 
-    console.log("user for change password ",user);
+   // console.log("user for change password ",user);
      //Hashing password for secure password
      const rounds=10;  //rounds define no of rounds for hashing the password
      const hashedPassword=await bcrypt.hash(password,rounds);
@@ -116,7 +116,7 @@ exports.resetPassword = async(req,res)=>{
     })
    }
    catch(err){
-    console.log("error in reset password ",err);
+    //console.log("error in reset password ",err);
     return res.status(500).json({
         success:false,
         message:"Error in reset  password ",
