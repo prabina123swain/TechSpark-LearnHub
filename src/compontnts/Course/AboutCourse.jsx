@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { BuyCourse } from '../../services/operations/PaymentProcess';
 import { addToCart } from '../../slices/cartSlice';
+import { hideLoading, showLoading } from '../../slices/loadingSlice';
 
 function AboutCourse({ courseDetails }) {
 
@@ -18,8 +19,10 @@ function AboutCourse({ courseDetails }) {
     // console.log("type " ,typeof courseDetails?._id);
     const user_details = user;
    // console.log("Hate ",token,"course",courses,user_details);
+    dispatch(showLoading());
     const result= await BuyCourse({token,courses,user_details,navigate});
     console.log("result of buy course ",result);
+    dispatch(hideLoading());
   }
   
    function  addToCartHandler() {

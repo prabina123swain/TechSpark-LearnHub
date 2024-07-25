@@ -2,21 +2,27 @@ import React, { useEffect, useState } from "react";
 //import { useParams } from "react-router-dom";
 import {  findAllCategoryDeatails } from "../../services/operations/CategoryPageData";
 import CategoryCourses from "./CategoryCourses";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../../slices/loadingSlice";
 
 const AllCategories = () => {
   const [currentCategory, setCurrentCategory] = useState({ name: null, description: null });
   const [allCategories, setAllCategories] = useState(null);
 
  // let { categoryName } = useParams();
-
+  const dispatch = useDispatch();
+ 
   async function fetchCategories() {
-    const result = await findAllCategoryDeatails();
+    dispatch(showLoading());
+    const result = await findAllCategoryDeatails(dispatch);
     console.log("categories are ", result);
 
     if (result && result.length > 0) {
       setAllCategories(result);
       setCurrentCategory(result[0]);
     }
+
+    dispatch(hideLoading());
   }
 
   useEffect(() => {

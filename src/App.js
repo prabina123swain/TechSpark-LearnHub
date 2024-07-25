@@ -27,15 +27,18 @@ import CourseDetails from "./pages/CourseDetails";
 import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./compontnts/Dashboard/StudentDashboard/VideoDetails";
 import WelcomeCourse from "./compontnts/Dashboard/StudentDashboard/WelcomeCourse";
+import Loader from "./compontnts/commmon/Loader";
 
 function App() {
   const {user} = useSelector(state=>state.profile);
 
   return (
-    <div className="overflow-x-hidden  min-h-screen">
+    <div className="overflow-x-hidden  min-h-screen w-screen">
       <div className='bg-[#f3f3f3] '>
        <Navbar/>
+       <Loader/>
       </div>
+
     <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="*" element={<Error/>} />
@@ -131,7 +134,6 @@ function App() {
             </>
           )}
         </Route>
-
      
    </Routes>
 

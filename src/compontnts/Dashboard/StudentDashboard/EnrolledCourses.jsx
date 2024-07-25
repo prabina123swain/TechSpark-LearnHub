@@ -1,19 +1,23 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../HomePage/Button';
 import { useState , useEffect} from 'react';
 import { studentCourses } from '../../../services/operations/courseApi';
 import MyCourseCard from './MyCourseCard';
+import { hideLoading, showLoading } from '../../../slices/loadingSlice';
 
 function EnrolledCourses() {
   
   const [courses,setCourses] = useState([]);
   const {token} = useSelector(state=>state.auth);
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    
     async function findCourses() {
+      dispatch(showLoading());
       const result = await studentCourses({ token });
+      dispatch(hideLoading());
       console.log("courses ", result.courses);
       setCourses(result.courses);
     }

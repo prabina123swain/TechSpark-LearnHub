@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCourse ,setStep,setEditCourse } from '../../../../slices/courseSlice';
 import {addCourseDetails} from '../../../../services/operations/courseApi'
 import toast from 'react-hot-toast';
+import { hideLoading, showLoading } from '../../../../slices/loadingSlice';
 
 function CreateCourseForm() {
 
@@ -32,11 +33,11 @@ function CreateCourseForm() {
 
 
   async function getAllcategoryDetails(){
-    // setLoading(true);
+     dispatch(showLoading());
      const result= await findAllCategoryDeatails();
       console.log("all categories ",result);
       setCourseCategories(result);
-     // setLoading(false);
+      dispatch(hideLoading());
     }
   useEffect(()=>{
          getAllcategoryDetails();

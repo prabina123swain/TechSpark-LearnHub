@@ -4,6 +4,7 @@ import ViewCourseSideBar from '../compontnts/Dashboard/StudentDashboard/ViewCour
 import { getFullCourseDetails } from '../services/operations/courseApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCourse } from '../slices/courseSlice';
+import { hideLoading, showLoading } from '../slices/loadingSlice';
 
 
 function ViewCourse() {
@@ -14,8 +15,10 @@ function ViewCourse() {
   useEffect(() => {
     async function getFullCourseData() {
       try {
+        dispatch(showLoading());
         const result = await getFullCourseDetails({ courseId, token });
         console.log("full course data ", result);
+        dispatch(hideLoading());
         dispatch(setCourse(result));
       } catch (error) {
         console.error("Failed to fetch course data", error);

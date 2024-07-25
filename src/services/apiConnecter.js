@@ -9,7 +9,7 @@ const axiosInstance = axios.create({});
 //apiConnector is a function for call backend api which require all the data like body,url,header
 
 export const apiConnector = (method , url , bodyData, headers, params )=>{
-   //console.log("body data" ,bodyData);
+   console.log("body data" ,bodyData);
     return axiosInstance({
         method:`${method}`,
         url: `${url}`,

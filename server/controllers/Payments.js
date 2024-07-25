@@ -1,5 +1,5 @@
 //take an instance of razorpay which is created at config folder
-const {instance}=require("../config/razorPay");
+const { instance } = require("../config/razorpay")
 const Course = require("../models/Course");
 const User=require("../models/User");
 const mailSender=require("../Utils/mailSender");

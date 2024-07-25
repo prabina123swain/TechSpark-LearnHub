@@ -32,6 +32,7 @@ export default function Form({inputData , formType}) {
   const dispatch = useDispatch();
   const [showPassword,setShowPassword] = useState(false)
   const [accountType,setAccountType] = useState("Student");
+  
   //const {signUpData} =useSelector(state=>state.auth);
   //console.log("sign up data ",signUpData,loading);
  // console.log(formType);
@@ -85,8 +86,9 @@ function changeHandler(event){
   }
 
   return (
-    <div  className='bg-white flex rounded-md  justify-between gap-10'>
-  <div className='w-1/2 flex flex-col items-center justify-center'>
+    
+   <div  className='w-11/12 mx-auto bg-white flex rounded-md justify-center  gap-20 p-12'>
+    <div className=' flex flex-col items-center justify-center'>
   {
       (formType==="signUp") &&
         <div
@@ -147,7 +149,6 @@ function changeHandler(event){
          text-richblack-900 mt-6 hover:scale-95 transition-all duration-200">
         {formType}
       </button>
-      
       { 
         (formType !== "signUp") &&
        <Link to={"/reset-password"}>    
@@ -156,13 +157,15 @@ function changeHandler(event){
      }
      </form>
   </div>
-  <div className='w-1/2 p-4  flex flex-col items-center justify-center'>
-   {
-    (formType=== "signUp") ? 
-     (<img src={sideImg} alt='signUpImg' loading='lazy'></img>)
-     : (<img src={imageUrl} alt='LogInImg' loading='lazy'></img>) 
-   }
+  <div className='hidden md:flex md:w-1/2 p-4 flex-col items-center justify-center'>
+  {
+    (formType === "signUp") ? 
+      (<img src={sideImg} alt='signUpImg' loading='lazy' className='w-full h-auto max-h-[600px] rounded-lg' />)
+    : 
+      (<img src={imageUrl} alt='LogInImg' loading='lazy' className='w-full h-auto max-h-[600px] rounded-lg' />) 
+  }
   </div>
+
     </div>
   )
 }

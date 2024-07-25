@@ -44,7 +44,7 @@ exports.createCategory= async(req,res) => {
 exports.showAllCategory = async(req,res) => {
     try{
     //Find all ta details whose name and description must present
-   // console.log("req body =>",req.body); 
+     console.log("req body =>",req.body); 
     const allCategories=await Category.find({},{name:true,description:true});
   
     //console.log("All Categories  ->\n",allCategories);
@@ -66,7 +66,7 @@ exports.showAllCategory = async(req,res) => {
 
 exports.categoryPageDetails = async (req,res) =>{
     try{
-        //console.log("Love ");
+        console.log("Love ");
         const {categoryId} = req.body;
         console.log("request body " ,req.body);
 

@@ -26,9 +26,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin:"http://localhost:3000",  ///these are options for cors
+        origin:"*",  ///these are options for cors 
         credentials:true
-    })
+    }),
 )
 app.use(
     fileUpload({

@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import {  categories } from "../api";
 import { apiConnector } from "../apiConnecter";
+import { hideLoading, showLoading } from "../../slices/loadingSlice";
 
 const  {
     ALL_CATEGORIES_API,
@@ -10,6 +11,7 @@ const  {
 
 export const findAllCategoryDeatails= async()=>{
     let result=[]
+    
     try {
         let response = await apiConnector("GET", ALL_CATEGORIES_API)
        // console.log("COURSE_CATEGORIES_API API RESPONSE............", response)
@@ -26,9 +28,10 @@ export const findAllCategoryDeatails= async()=>{
 
 
 export const categoryPageDetails = async(categoryId) =>{
+    
     let result =[];
     console.log("Id-",categoryId);
-    const toastId=toast.loading("Londing..");
+    //const toastId=toast.loading("Londing..");
 
     try{
 
@@ -42,12 +45,12 @@ export const categoryPageDetails = async(categoryId) =>{
             throw new Error ("Error in finding category data ");
         }
         result=  response.data;
-        //toast.success("")
+        //toast.success("");
     }
     catch(e){
         toast.error(e.message);
         console.log("Eroor  ",e);
     }
-    toast.dismiss(toastId);
+    //toast.dismiss(toastId);
     return result;
 }

@@ -1,9 +1,10 @@
 // src/components/CourseList.js
 import React, { useEffect, useState } from 'react';
 import CourseList from './CourseList';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteCourse, userCourses } from '../../../../services/operations/courseApi';
 import {  useNavigate } from 'react-router-dom';
+import { hideLoading, showLoading } from '../../../../slices/loadingSlice';
 
 
 const ShowMyCourses = () => {
@@ -14,8 +15,7 @@ const ShowMyCourses = () => {
     // const {course} = useSelector(state=>state.course);
     
     const navigate = useNavigate();
-
-
+    const dispatch = useDispatch();
     //console.log("user",user);
 
   useEffect(()=>{
@@ -25,7 +25,9 @@ const ShowMyCourses = () => {
       //   console.log(courseId);
       //   return  await findCourseDetails({courseId,token});
       // })
+      dispatch(showLoading());
       const result= await userCourses({token});
+      dispatch(hideLoading());
       console.log("courses ",result.courses);
        setAllCourses(result.courses);
      }
@@ -35,8 +37,10 @@ const ShowMyCourses = () => {
      },[token]);
 
      const handleDelete = async(id) => {
-      console.log(`Delete course with id ${id}`);
+       console.log(`Delete course with id ${id}`);
+       dispatch(showLoading());
         const result= await deleteCourse({courseId:id,token});
+        dispatch(hideLoading());
         console.log("result ",result);
         if(result.success){
           setAllCourses(result.updatedCourses);

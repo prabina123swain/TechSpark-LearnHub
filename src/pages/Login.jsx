@@ -22,12 +22,10 @@ const logInData =[
 
 function Login() {
   return (
-    <div className='' >
+    <>
     <Template data={logInData} formType={"sign In"} />
-    <div>
       <Footer />
-    </div>
-    </div>
+    </>
   );
 }
 

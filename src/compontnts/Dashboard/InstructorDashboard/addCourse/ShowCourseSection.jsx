@@ -9,6 +9,7 @@ import { setCourse } from "../../../../slices/courseSlice"
 import ConfirmationModal from "../../../commmon/ConfirmationModal"
 import { deleteSection, deleteSubSection } from "../../../../services/operations/sectionAndSubsectionApi"
 import SubSectionModal from "./SubSectionModal"
+import { hideLoading, showLoading } from "../../../../slices/loadingSlice"
 // import ConfirmationModal from "../../../../Common/ConfirmationModal"
 // import SubSectionModal from "./SubSectionModal"
 
@@ -38,8 +39,10 @@ export default function ShowCourseSection({ handleChangeEditSectionName }) {
     }
 
      const handleDeleteSection = async(sectionId)=>{
+       dispatch(showLoading());
         const result = await deleteSection({sectionId,courseId:course?._id,token});
       //  console.log("result in section deltetion",result);
+       dispatch(hideLoading());
         if(result){
             dispatch(setCourse(result.updatedCourse));
         }

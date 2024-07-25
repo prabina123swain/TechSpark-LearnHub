@@ -59,16 +59,15 @@ export default function SubSectionModal({
   }
 
  const handleCreateSubsection= async(data)=>{
-   setLoading(true)
+   
    // console.log(data.lectureDesc,data.lectureTitle,data.lectureVideo);
-    let result  = await createSubSection(
+   let result  = await createSubSection(
       {
           title:data.lectureTitle,
           description:data.lectureDesc,
           sectionId:modalData,
           video:data.lectureVideo
             , token})
-
   if (result) {
     // update the structure of course
     //console.log("priviously course content-> ",course.courseContents,modalData);
@@ -81,7 +80,7 @@ export default function SubSectionModal({
    //console.log("updated course content ",course.courseContents);
   }
   setModalData(null)
-  setLoading(false)
+   setLoading(false)
  }
 
   // handle the editing of subsection

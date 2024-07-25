@@ -2,27 +2,34 @@ import React, { useEffect, useState } from 'react'
 import CourseCard from './CourseCard'
 import { categoryPageDetails } from '../../services/operations/CategoryPageData'
 import ConfirmationModal from '../commmon/ConfirmationModal';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../commmon/Loader';
+import { hideLoading, showLoading } from '../../slices/loadingSlice';
 
- function CategoryCourses({categoryId}) {
+function CategoryCourses({categoryId}) {
         //find all courses of that category
         const [currentCategoryCourses,setCurrentCategoryCourses]=useState([]);
         // const [otherCategoryCourses,setOtherCategoryCourses]=useState([]);
          const [topSellingCategoryCourses,setTopsellingCategoryCourses]=useState([]);
+        
+         const dispatch = useDispatch();
        
   useEffect(() => {
       async function findCategoryData(categoryId) {
        // console.log("ID-",categoryId);
+        dispatch(showLoading());
         const result=await categoryPageDetails(categoryId);
         //console.log("Category Page Data  ",result);
         setCurrentCategoryCourses(result.categoryCourses);
         //setOtherCategoryCourses(result.otherCategories);
         setTopsellingCategoryCourses(result.topSellingCourses);
+        dispatch(hideLoading());
         console.log("current category courses ",currentCategoryCourses);
         //console.log("other category courses ",otherCategoryCourses);
         console.log("topSelling category courses ",topSellingCategoryCourses);
       }
     findCategoryData(categoryId);
-  },[categoryId , currentCategoryCourses , topSellingCategoryCourses ]);
+  },[categoryId]);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -36,7 +43,7 @@ import ConfirmationModal from '../commmon/ConfirmationModal';
         window.location.href = "/login"; 
     },
     btn2Handler: () => setShowModal(false),
-}
+  }
 
   return (
     <div className='w-11/12 mx-auto'> 

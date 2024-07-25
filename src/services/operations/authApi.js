@@ -1,9 +1,10 @@
 import { apiConnector } from "../apiConnecter";
 import {endpoints} from '../api';
 import toast from "react-hot-toast";
-import { setLoading, setToken } from "../../slices/authSlice";
+import {  setToken } from "../../slices/authSlice";
 import { setUser } from "../../slices/profileSlics";
 import { resetCart } from "../../slices/cartSlice";
+import { hideLoading, showLoading } from "../../slices/loadingSlice";
 
 const {
     RESETPASSTOKEN_API,
@@ -17,7 +18,7 @@ const {
 
 export function sendOTP({email,navigate}){
     return async(dispatch)=>{
-        setLoading(true);
+        dispatch(showLoading());
         const toastId= toast.loading("Loading...");
        try{
          //call sendOtp controller in backend
@@ -35,7 +36,7 @@ export function sendOTP({email,navigate}){
         toast.error("Error in send otp ");
         console.log("error in sending otp ",err);
        }
-       setLoading(false);
+       dispatch(hideLoading());
        toast.dismiss(toastId);
     }
 }
@@ -47,7 +48,7 @@ export function signUp(signUpData,{otp ,navigate}){
     otp
    }
     return async(dispatch)=>{
-        setLoading(true);
+        dispatch(showLoading());
         const toastId = toast.loading("Loading ..");
         try{
             const response = await apiConnector("POST",SIGNUP_API,data);
@@ -63,7 +64,7 @@ export function signUp(signUpData,{otp ,navigate}){
             toast.error(err.response.data.message);
             console.error("error in sign in \n",err);
             }
-            setLoading(false);
+            dispatch(hideLoading());
             toast.dismiss(toastId);
     }
 }
@@ -71,7 +72,7 @@ export function signUp(signUpData,{otp ,navigate}){
 export function logIn({email,password,navigate}){
   //  console.log("email and password \n",email ,password );
     return async(dispatch)=>{
-        setLoading(true);
+        dispatch(showLoading());
         const toastId = toast.loading("Loading ..");
         try{
           const response = await apiConnector("POST",LOGIN_API,{
@@ -98,7 +99,7 @@ export function logIn({email,password,navigate}){
         toast.error(err.response?.data.message);
         console.error("error in sign in \n",err);
         }
-        setLoading(false);
+        dispatch(hideLoading());
         toast.dismiss(toastId);
     }
 }
