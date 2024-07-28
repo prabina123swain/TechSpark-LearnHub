@@ -142,7 +142,10 @@ export const deleteCourse = async({courseId,token})=>{
 
 export const updateCoursedetails = async(newdata,token)=>{
   let result = null
-  const toastId = toast.loading("Loading...")
+  const toastId = toast.loading("Loading...");
+
+  console.log("course data ",newdata);
+  
   try {
     const response = await apiConnector("POST", EDIT_COURSE_API, newdata, {
       "Content-Type": "multipart/form-data",

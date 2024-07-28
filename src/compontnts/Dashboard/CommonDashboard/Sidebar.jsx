@@ -4,17 +4,29 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import { FiSettings } from "react-icons/fi";
 import { logOut } from '../../../services/operations/authApi';
+import ConfirmationModal from '../../commmon/ConfirmationModal';
+import { useState } from 'react';
 
 
 function Sidebar() {
- const location = useLocation();
+  const location = useLocation();
   const {user}= useSelector(state=>state.profile);
   const dispatch= useDispatch();
   const navigate= useNavigate();
 
-  function logOutHandler(){
-    dispatch(logOut({navigate}));
+  const [showModal , setShowModal]= useState(null);
+
+  const modalData ={ 
+    text1: `Are You sure ?`,
+    btn1Text: "Logout",
+    btn2Text: "Cancel",
+    btn1Handler: () => {
+      dispatch(logOut({navigate}));
+    },
+    btn2Handler: () => setShowModal(false),
   }
+   
+
 
   return (
     <div className='bg-[#eeeef6] border-[20px] border-[#F0F3F5] p-4 text-richblack-900 text-lg font-normal'>
@@ -36,12 +48,16 @@ function Sidebar() {
      <FiSettings/>
      <NavLink to={"dashboard/setting"}>Setting</NavLink>
      </li>
-     <li  className={`flex gap-2 items-center p-2`} onClick={logOutHandler}>
+     <li  className={`flex gap-2 items-center p-2`} onClick ={ ()=>setShowModal(true) }>
      <FiLogOut/>
       <button>LogOut</button>
     </li>
      </ul>
-    </div>
+
+    {
+      showModal && <ConfirmationModal  modalData={modalData}/>
+    }
+     </div>
   )
 }
 

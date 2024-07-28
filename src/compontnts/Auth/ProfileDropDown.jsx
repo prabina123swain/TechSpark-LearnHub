@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from '../../services/operations/authApi';
 import { Link, useNavigate } from 'react-router-dom';
 import { ACCOUNT_TYPE } from '../../utils/constants';
+import ConfirmationModal from '../commmon/ConfirmationModal';
 
 
 //after log in we will show user details ->cart,total items,notification, name,image
@@ -29,7 +30,7 @@ export default function ProfileDropDown() {
     {
         title:"My courses",
         logo:<MdLibraryBooks color={"green"}/>,
-        linkto:user?.accouser?.accountType === "Student"?"/dashboard/enrolled-courses":"/dashboard/my-courses"
+        linkto:user?.accouser?.accountType !== "Instructor" ? "/dashboard/enrolled-courses" : "/dashboard/my-courses"
     },
     {
         title:"Edit Profile",
@@ -41,16 +42,15 @@ export default function ProfileDropDown() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const dropdownRef = useRef(null);
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       // Clicked outside the dropdown, so close it
       setIsDropdownOpen(false);
-    }
-  };
+     }};
 
   useEffect(() => {
     // Attach event listener when the component mounts
@@ -62,10 +62,20 @@ export default function ProfileDropDown() {
     };
   }, []);
 
+
+  const modalData ={ 
+    text1: `Are You sure ?`,
+    btn1Text: "Logout",
+    btn2Text: "Cancel",
+    btn1Handler: () => {
+      dispatch(logOut({navigate}));
+    },
+    btn2Handler: () => setShowModal(false),
+  }
+
   const toggleDropdown = (event) => {
     // Stop the click event from propagating to the document
     event.stopPropagation();
-
     setIsDropdownOpen(!isDropdownOpen);
   };
 
@@ -108,17 +118,19 @@ export default function ProfileDropDown() {
                 ))
                 }
                 <li className='flex items-center p-2 pl-2' 
-                  onClick={()=>dispatch(logOut({navigate}))}>
+                  onClick={()=>setShowModal(true)}>
                    <FiLogOut color='green'/>
                    <span className='pl-2'>LogOut</span>
                     </li>
                </div>
-                
                )
                 }
             </div>
             </ul>
      </div>
+     {
+      showModal && <ConfirmationModal modalData={modalData}/>
+     }
     </div>
   )
 }

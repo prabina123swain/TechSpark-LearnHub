@@ -166,6 +166,7 @@ exports.Signup=async (req,res)=>{
        user
      })
     }
+    
     catch(err){
        // console.log("error in sign up",err);
        return res.status(500).json({

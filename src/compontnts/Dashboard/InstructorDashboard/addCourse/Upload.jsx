@@ -90,7 +90,7 @@ export default function Upload({
       </div>
               )
              }
-             {/* this for when we anr not viewing data can cel buttom will show */}
+             {/* this for when we ane not viewing data cancel buttom will show */}
               {
                 !viewData && (
               <button
@@ -111,7 +111,7 @@ export default function Upload({
             <div
             className="flex w-full flex-col items-center p-6 cursor-pointer"
             {...getRootProps()}
-          >
+           >
             <input {...getInputProps()} ref={inputRef}/>
             <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-500">
               <FiUploadCloud className="text-2xl text-yellow-50" />

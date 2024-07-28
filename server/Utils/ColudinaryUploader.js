@@ -32,7 +32,7 @@ exports.uploadToCloudinary = async(file,folder,height,width,quality)=>{
 exports.DeleteFromcloudinary = async(url,folder,fileType)=>{
     const public_id = extractPublicId(url);
     //console.log(public_id);
-    const {options}=folder;
+    // const {options}=folder;
     //options.resource_type="video";
    try{
    const result= await cloudinary.uploader.destroy(public_id,{folder:folder, secure: true, resource_type: `${fileType}` });
