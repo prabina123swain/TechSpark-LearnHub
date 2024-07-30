@@ -40,7 +40,7 @@ exports.resetPasswordToken=async(req,res)=>{
      {new:true});
      //create a url for sending an email
      //url contains token for verification of the valid user
-     const url=`http://localhost:3000/reset-password/${token}`;
+     const url=`https://tech-spark-learn-hub.vercel.app/reset-password/${token}`;
      await mailSender(email,"Link for reset password ",`<p>Click for reset password <a href="${url}">${url}</a></p>`);
 
     return res.status(200).json({

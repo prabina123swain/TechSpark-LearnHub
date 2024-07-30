@@ -1,6 +1,7 @@
 import { toast } from "react-hot-toast"
 import { apiConnector } from "../apiConnecter";
 import { courseEndpoints } from "../api";
+import { hideLoading, showLoading } from "../../slices/loadingSlice";
 
 const {
   COURSE_DETAILS_API,
@@ -96,9 +97,10 @@ export const userCourses =async({token})=>{
 }
 
 
-export const studentCourses =async({token})=>{
+export const studentCourses =async({token,dispatch})=>{
   let result;
   const toastId=toast.loading();
+  dispatch(showLoading());
   try{
   // console.log("abcde");
     const response= await apiConnector("GET",GET_ALL_STUDENT_COURSES_API,null,{
@@ -114,12 +116,14 @@ export const studentCourses =async({token})=>{
    console.log("ERROR IN FETCHING COURSE DETAILS...",e.message);
   }
   toast.dismiss(toastId);
+  dispatch(hideLoading());
   return result;
 }
 
-export const deleteCourse = async({courseId,token})=>{
+export const deleteCourse = async({courseId,token,dispatch})=>{
     let result;
     const toastId= toast.loading("Loading...");
+    dispatch(showLoading());
     console.log(courseId,token);
      try{
         const response= await apiConnector("DELETE",DELETE_COURSE_API,{courseId},{
@@ -137,6 +141,7 @@ export const deleteCourse = async({courseId,token})=>{
         toast.error(err.message);
      }
      toast.dismiss(toastId);
+     dispatch(hideLoading());
      return result;
 }
 

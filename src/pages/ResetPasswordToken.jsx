@@ -11,7 +11,7 @@ function ResetPasswordToken() {
     function submitHandler(e) {
         e.preventDefault();
         // Call a function using dispatch which will help to create a token and send mail to corresponding user
-        dispatch(getPasswordResetToken(email, setMailSent));
+        dispatch(getPasswordResetToken(email, setMailSent,dispatch));
     }
 
     const handleEmailChange = (e) => {
@@ -19,7 +19,7 @@ function ResetPasswordToken() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-500 to-blue-300 overflow-y-auto">
+        <div className="bg-gradient-to-r from-black to-blue-500 to-orange-500 min-h-screen flex items-center justify-center p-8">
             <div className="w-full max-w-md p-6 bg-white rounded-md shadow-md">
                 <h2 className="text-2xl font-bold">
                     {!mailSent ? (

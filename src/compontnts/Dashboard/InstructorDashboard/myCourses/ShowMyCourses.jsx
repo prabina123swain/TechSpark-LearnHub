@@ -39,7 +39,7 @@ const ShowMyCourses = () => {
      const handleDelete = async(id) => {
        console.log(`Delete course with id ${id}`);
        dispatch(showLoading());
-        const result= await deleteCourse({courseId:id,token});
+        const result= await deleteCourse({courseId:id,token,dispatch});
         dispatch(hideLoading());
         console.log("result ",result);
         if(result.success){

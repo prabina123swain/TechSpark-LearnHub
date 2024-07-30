@@ -10,6 +10,7 @@ import { logIn, sendOTP } from '../../services/operations/authApi';
 import { Link } from 'react-router-dom';
 import imageUrl from '../../assets/Images1/loginimage.jpg'
 import sideImg from '../../assets/Images1/Man Study Image.webp'
+import { FaCheck } from 'react-icons/fa';
 
 
 const tabData = [
@@ -32,18 +33,43 @@ export default function Form({inputData , formType}) {
   const dispatch = useDispatch();
   const [showPassword,setShowPassword] = useState(false)
   const [accountType,setAccountType] = useState("Student");
-  
+  const [passwordStrength , setPasswordStrength ] = useState("week");
   //const {signUpData} =useSelector(state=>state.auth);
   //console.log("sign up data ",signUpData,loading);
  // console.log(formType);
   const [formData, setFormData] = useState({
   })
 
+  const calculatePasswordStrength = (password) => {
+    // Simple password strength criteria (you can adjust these based on your requirements)
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    const isLengthValid = password.length >= 8;
+
+     let strength;
+    // Calculate strength based on criteria
+    if (isLengthValid && hasUppercase && hasLowercase && hasNumber && hasSpecialChar) {
+      strength =  'Strong';
+    } else if (isLengthValid && (hasUppercase || hasLowercase) && (hasNumber || hasSpecialChar) ) {
+      strength = 'Moderate';
+    } else {
+       strength =  'Weak';
+    }
+
+    setPasswordStrength(strength);
+
+  };
+  
   
 function changeHandler(event){
   //console.log("event",event);
   const{name,value}=event.target
  // console.log("Form data",formData);
+  if(name=="password") {
+    calculatePasswordStrength(value);
+  }
   setFormData(prevData=>{
     return{
         ...prevData,
@@ -62,11 +88,11 @@ function changeHandler(event){
           toast.error("Password does not matched ");
           return;
         }
-        // else if(password.length<8)
-        // {
-        //   toast.error("Password length must be atleast 8 ");
-        //   return;
-        // }
+        else if(passwordStrength==="Weak")
+        {
+          toast.error("Password must be strong/moderate ");
+          return;
+        }
       const signUpData={
           ...formData,
           accountType
@@ -115,26 +141,43 @@ function changeHandler(event){
         <p className="mb-1 text-lg font-inter  leading-[1.375rem] ">
           {data.levelFor}<sup className="text-pink-200">*</sup>
         </p>
-        <input
-          required
-          type={!showPassword && data.name==="password" ?data.type:"text"}
-          name={data.name}
-          value={data.value}
-          onChange={changeHandler}
-          placeholder={data.placeholder}
-          className="form-style w-full text-black rounded-md p-2 text-md lg:min-w-[300px] border-2 border-richblue-300"
-        />
-     { 
-       (data.name==="password")?(
-      <span  className="absolute right-3 top-[60%] z-[10] cursor-pointer"
-          onClick={() => setShowPassword((prev) => !prev)}>
-          {showPassword ? (
-            <FiEye fontSize={24} color='black' />
-          ) : (
-            <FiEyeOff fontSize={24} color='black' />
-          )}
-          </span>
-        ):(<></>)}
+        <div className="relative">
+  <input
+    required
+    type={!showPassword && data.name === "password" ? data.type : "text"}
+    name={data.name}
+    value={data.value}
+    onChange={changeHandler}
+    placeholder={data.placeholder}
+    className="form-style w-full text-black rounded-md p-2 text-md lg:min-w-[300px] border-2 border-richblue-300"
+  />
+  {data.name === "password" && (
+    <span
+      className="absolute right-3 top-4 transform -translate-y-1/2 flex items-center z-[10] cursor-pointer"
+      onClick={() => setShowPassword(prev => !prev)}
+    >
+      {showPassword ? (
+        <FiEye fontSize={24} color='black' />
+      ) : (
+        <FiEyeOff fontSize={24} color='black' />
+      )}
+    </span>
+  )}
+  {data.name === "password" && formType === "signUp" && (
+    <div className='flex flex-col gap-2 mt-2'>
+      <div className="text-sm text-gray-700 flex items-center gap-1">
+        {passwordStrength === 'Weak' && <FaCheck color='red' />}
+        {passwordStrength === 'Moderate' && <FaCheck color='yellow' />}
+        {passwordStrength === 'Strong' && <FaCheck color='green' />}
+        {passwordStrength}
+      </div>
+      {/* <span className='text-sm text-gray-700 opacity-60'>
+        Password must contain at least 8 characters with at least one digit, one uppercase letter, one lowercase letter, and one special character.
+      </span> */}
+    </div>
+    )}
+     </div>
+
       </label>
         ))
        }

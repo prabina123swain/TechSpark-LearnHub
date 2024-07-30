@@ -15,8 +15,8 @@ function EnrolledCourses() {
   useEffect(() => {
     
     async function findCourses() {
-      dispatch(showLoading());
-      const result = await studentCourses({ token });
+     // dispatch(showLoading());
+      const result = await studentCourses({ token,dispatch });
       dispatch(hideLoading());
       //console.log("courses ", result.courses);
       setCourses(result.courses);

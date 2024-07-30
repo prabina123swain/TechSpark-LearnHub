@@ -119,11 +119,11 @@ export function logOut({navigate}){
     }
 }
 //this function call to backend by apiconnector using api routes 
-export function getPasswordResetToken(email , setmailSent){
+export function getPasswordResetToken(email , setmailSent,dispatch){
     
     return async()=>{
         try{
-          
+          dispatch(showLoading());
            // console.log("reset password token api ",RESETPASSTOKEN_API);
          //call api connector for calling to backend
           const result=await apiConnector("POST",RESETPASSTOKEN_API,{email});
@@ -135,6 +135,7 @@ export function getPasswordResetToken(email , setmailSent){
           }
           toast.success("Reset mail sent successfully");
           setmailSent(true);
+          dispatch(hideLoading());
         }
         catch(er){
             console.log("Error in Reset password token api ",er)

@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { FaCheck , FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { updatePassword } from '../services/operations/authApi';
+import { hideLoading, showLoading } from '../slices/loadingSlice';
 
 const UpdatePassword = () => {
   const [newPassword, setNewPassword] = useState('');
@@ -47,6 +48,7 @@ const UpdatePassword = () => {
       toast.error('Passwords do not matched');
       return;
     }
+    dispatch(showLoading());
     const token =location.pathname.split('/').at(-1);
     //  logic to update the password
     //console.log(newPassword,confirmPassword ,token);
@@ -58,12 +60,10 @@ const UpdatePassword = () => {
     setConfirmPassword('');
     setError('');
     setPasswordStrength('');
-    const currentTimestamp = Date.now();
-    // Add 2 seconds (2000 milliseconds) to the current timestamp
-    const newTimestamp = currentTimestamp + 2000;
-    if(result && newTimestamp<Date.now()){
-        navigate("/login");
-    }
+    const timer = setTimeout(() => {
+      dispatch(hideLoading());
+      navigate('/login');
+  }, 2000);
   };
 
   return (
