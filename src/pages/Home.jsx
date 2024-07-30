@@ -7,9 +7,9 @@ import Footer from '../compontnts/commmon/Footer'
 
 function Home() {
   return (
-    <div className="bg-[#fdfbfc] w-full ">
+    <div className="bg-[#fdfbfc] w-full flex flex-col gap-20">
      { /* Section 1 */}
-     <div className='w-10/12 mx-auto'>
+     <div className='w-10/12 mx-auto mb-10 md:mb-20' >
      <Section1/>
      </div>
      {/*Section 2 code block code */}

@@ -6,7 +6,7 @@ import { FaArrowRight } from 'react-icons/fa';
 
 export default function Section1() {
   return (
-    <div className='flex flex-col md:flex-row justify-between gap-3 items-center h-[100vh] pt-14'>
+    <div className='flex flex-col md:flex-row justify-between gap-3 items-center  pt-14'>
       <div className='w-full md:w-2/5 flex flex-col gap-5'>
         <p className="text-3xl md:text-6xl font-semibold overflow-hidden">
           Discover Your Profession, Forge Your Path
@@ -19,15 +19,17 @@ export default function Section1() {
           <Button active={false} linkto={"/courses"}>
             Start Learning <FaArrowRight />
           </Button>
-          <Button active={true} linkto={"/about"}>
+          {/* <Button active={true} linkto={"/about"}>
             Learn More <FaArrowRight />
-          </Button>
+          </Button> */}
         </div>
       </div>
-      <div className='relative w-[40%] h-full'>
-        <img  src={study_image}  alt='study' className='absolute  right-[-10px] bg-cover place-content-baseline' />
-        <img  src={circle}  alt='circle' className='ml-[-110px] '/>
-       </div>
+      
+      <div className='relative w-[40%] h-full hidden md:block'>
+      <img src={study_image} alt='study' className='absolute right-[-10px] bg-cover place-content-baseline' />
+      <img src={circle} alt='circle' className='ml-[-110px]' />
+    </div>
+
     </div>
   );
 }

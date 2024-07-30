@@ -7,55 +7,51 @@ import timelineimage from "../../assets/Images/TimelineImage.png"
 
 const TimelineData = [
     {
-        logo:logo1,
-        heaing:"Leadership",
-        description:"Fully commited to the success company"
+        logo: logo1,
+        heading: "Leadership",
+        description: "Fully committed to the success of the company"
     },
     {
-        logo:logo2,
-        heaing:"Responsibility",
-        description:"Student will be always our top priority"
+        logo: logo2,
+        heading: "Responsibility",
+        description: "Students will always be our top priority"
     },
     {
-        logo:logo3,
-        heaing:"Flexibility",
-        description:"Ability to switch is an important"
+        logo: logo3,
+        heading: "Flexibility",
+        description: "Ability to switch is important"
     },
     {
-        logo:logo4,
-        heaing:"Solve the problem",
-        description:"Code in better way"
+        logo: logo4,
+        heading: "Solve the Problem",
+        description: "Code in a better way"
     },
-
 ]
 
 function Timeline() {
-  return (
-    <div className='flex items-center p-10'>
-        <div className='w-[45%] flex flex-col gap-5'>
-        <h1 className='text-4xl font-extrabold text-[#83859c] leading-9 mb-6'>Top skills for job</h1>
-          {
-          TimelineData.map((element , index)=>{
-            return(
-              <div className='flex flex-row gap-0' key={index}>
-                <div className='w-[50px] h-[50px] bg-white flex items-center'>
-                   <img src={element.logo} alt={"logo"}/>
-                </div>
-                <div>
-                    <h2 className='font-semibold text-[18px]'>{element.heaing}</h2>
-                    <p className='font-base'>{element.description}</p>
-                </div>
-              </div>
-            )
-          })
-          }
-        </div>
-        <div className='w-[50%] relative shadow-blue-200 h-fit rounded-lg'>
-            <div className='object-cover '>
-                <img src={timelineimage} className='rounded-md' alt='timeline' />
+    return (
+        <div className='flex flex-col md:flex-row items-center p-10'>
+            <div className='w-full md:w-1/2 flex flex-col gap-5 mb-10 md:mb-0'>
+                <h1 className='text-4xl font-extrabold text-[#83859c] leading-9 mb-6'>Top Skills for Job</h1>
+                {
+                    TimelineData.map((element, index) => (
+                        <div className='flex flex-row gap-3 items-start' key={index}>
+                            <div className='w-12 h-12 bg-white flex items-center justify-center rounded-full'>
+                                <img src={element.logo} alt={"logo"} className='w-8 h-8' />
+                            </div>
+                            <div>
+                                <h2 className='font-semibold text-lg'>{element.heading}</h2>
+                                <p className='text-base'>{element.description}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+            <div className='w-full md:w-1/2 md:block hidden relative shadow-blue-200 h-fit rounded-lg'>
+                <img src={timelineimage} className='rounded-md w-full h-auto' alt='timeline' />
             </div>
         </div>
-    </div>
-)}
+    )
+}
 
 export default Timeline

@@ -23,7 +23,7 @@ exports.resetPasswordToken=async(req,res)=>{
      if(!user){
         return res.status(403).json({
             success:false,
-            message:"User not found ",
+            message:"User not registered ",
         })
      }
      //generate token for which will be send to mail

@@ -123,20 +123,22 @@ export function getPasswordResetToken(email , setmailSent){
     
     return async()=>{
         try{
+          
            // console.log("reset password token api ",RESETPASSTOKEN_API);
          //call api connector for calling to backend
           const result=await apiConnector("POST",RESETPASSTOKEN_API,{email});
          // console.log("Result for generationg token... ",result);
 
           if(!result.data.success){
+            
             throw new Error(result.data.message);
           }
           toast.success("Reset mail sent successfully");
           setmailSent(true);
         }
         catch(er){
-          //  console.log("Error in Reset password token api ",er)
-            toast.error("Erroe in sending Token");
+            console.log("Error in Reset password token api ",er)
+            toast.error(er.response.data.message);
         }
     }
 }

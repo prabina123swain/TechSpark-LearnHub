@@ -89,30 +89,25 @@ function changeHandler(event){
     
    <div  className='w-11/12 mx-auto bg-white flex rounded-md justify-center  gap-20 p-12'>
     <div className=' flex flex-col items-center justify-center'>
-  {
-      (formType==="signUp") &&
-        <div
-      style={{
-        boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-      }}
-      className="flex bg-richblack-25   pb-1 mb-6 gap-x-1  rounded-full max-w-max"
-    >
-      {tabData.map((tab) => (
-        <button
-          key={tab.id}
-          onClick={() => setAccountType(tab.type)}
-          className={`${
-            accountType === tab.type
-              ? "bg-richblack-200 text-white font-bold"
-              : "bg-transparent text-richblack-200 text-lg"
-          } py-2 px-5 rounded-full transition-all duration-300 text-richblack-700 text-lg`}
-        >
-          {tab?.tabName}
-        </button>
-      ))}
-    </div>
-    }
-    
+    {formType === "signUp" && (
+        <div className="relative rounded-full shadow-inner bg-gray-100 flex pb-1 mb-6 gap-x-1">
+          {tabData.map((tab) => (
+            <button
+            key={tab.id}
+            onClick={() => setAccountType(tab.type)}
+            className={`py-2 px-8 rounded-full transition-all duration-300 ${
+              accountType === tab.type
+                ? "bg-blue-200 text-black font-bold"
+                : "bg-transparent bg-blue-50 text-richblack-800 cursor-not-allowed"
+            }`}
+            
+          >
+            {tab.tabName}
+          </button>
+          ))}
+        </div>
+      )}
+
       <form className='flex flex-col gap-4 ' onSubmit={submitHandler}>
        {
         inputData.map((data,index)=>(
